@@ -19,6 +19,7 @@ it('keeps the wordpress openlitespeed mariadb template parseable and internally 
 
     $services = $compose['services'];
     expect(array_keys($services))->toContain('wordpress', 'mariadb');
+    expect($compose['volumes'] ?? [])->toHaveKeys(['wordpress-files', 'mariadb-data']);
 
     $wordpress = $services['wordpress'];
     expect($wordpress['depends_on'] ?? [])->toContain('mariadb');
